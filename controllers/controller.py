@@ -1,7 +1,7 @@
 from PIL import Image
 
 from models import image_handler
-from models.uploaded_image import ImageClazz
+from models.image_model import ImageClazz
 
 
 def start_conversion(images: list[ImageClazz]):

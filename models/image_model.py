@@ -33,3 +33,24 @@ class ImageClazz(object):
     def update_image_size(self):
         if self._image_path:
             self._image_size = os.path.getsize(self._image_path) // 1024
+
+    def update_image_type(self):
+        self._image_type = {
+            (self._width / self._height < 1): 'mobile',
+            (self._width / self._height >= 2.3): 'large_format',
+            (1.5 <= self._width / self._height < 2.3): 'standard',
+            (1 <= self._width / self._height < 1.5): 'square',
+        }[True]
+
+    def update_resolution(self, width, height):
+        self._height = height
+        self._width = width
+
+    def get_resolution(self):
+        return self._width, self._height 
+
+    def update_info(self, width: int, height: int):
+        self.update_image_size()
+        self.update_resolution(width=width, height=height)
+        self.update_image_type()
+
