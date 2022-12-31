@@ -1,11 +1,11 @@
-import os.path
+import os
 
 from tkinter import Tk, Button, Label
 from tkinter.ttk import Treeview
 from tkinter.filedialog import askopenfilenames
 
 from controllers import controller
-from models.uploaded_image import ImageClazz
+from models.image_model import ImageClazz
 
 EXTENSIONS = [('Image Files', ('*jpg', '*png', '*webp', '*jpeg'))]
 
@@ -31,15 +31,13 @@ class ImageHandler(object):
         self.conversion_button = Button(self.root,
                                         text='Start conversion',
                                         width=30,
-                                        command=lambda:
-                                        self.completion_handler(self.images))
+                                        command=lambda: self.completion_handler(self.images))
         self.conversion_button.grid(row=5, column=1, padx=10)
 
         self.folder_with_images = Button(self.root,
                                          text='Open folder',
                                          width=30,
-                                         command=lambda:
-                                         self.open_directory_with_files())
+                                         command=lambda: self.open_directory_with_files())
 
         self.folder_with_images.grid(row=5, column=0, padx=10)
         self.tree_view = Treeview(self.root, selectmode='browse', height=15)
