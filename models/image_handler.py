@@ -23,10 +23,11 @@ def save_with_size_limit(resized_image: Image, image: ImageClazz, quality=100,
     else: 
         image.update_info(resized_image.size[0], resized_image.size[1])
     while int(image.get_image_size()) > size_limit:
-        quality -= 3
+        quality -= 2
         resized_image.save(image.get_image_path(),
                             quality=quality,
-                            optimize=True)
+                            optimize=True,
+                            dpi=(300, 300))
         image.update_image_size()
 
 
