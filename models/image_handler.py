@@ -17,10 +17,11 @@ def save_with_size_limit(resized_image: Image, image: ImageClazz, quality=100,
                          size_limit=350):
     resized_image.save(image.get_image_path(),
                         quality=quality,
-                        optimize=True)
+                        optimize=True,
+                        dpi=(300, 300))
     if image.get_resolution() == RESIZE_RESOLUTION:
         image.update_image_size()
-    else: 
+    else:
         image.update_info(resized_image.size[0], resized_image.size[1])
     while int(image.get_image_size()) > size_limit:
         quality -= 2
@@ -142,7 +143,7 @@ def find_max_width(image_width: int) -> int:
 
 def find_max_height(image_height):
     max_height = max([size for size in range(image_height,
-                                                 image_height - 20, -1)
+                                             image_height - 20, -1)
                           if size % RATIO_HEIGHT == 0])
         
     return max_height

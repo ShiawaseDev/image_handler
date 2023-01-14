@@ -7,10 +7,15 @@ class ImageClazz(object):
         self._image_path = image_path
         self._width = width
         self._height = height
+        # Image classification
+        # mobile - 2000x5000 
+        # large_format - 5000x2000
+        # standard - 1920x1080
+        # square - 1280x1280
         self._image_type = {
             (self._width / self._height < 1): 'mobile',
-            (self._width / self._height >= 2.3): 'large_format',
-            (1.5 <= self._width / self._height < 2.3): 'standard',
+            (self._width / self._height >= 2.2): 'large_format',
+            (1.5 <= self._width / self._height < 2.2): 'standard',
             (1 <= self._width / self._height < 1.5): 'square',
         }[True]
         self._image_size = os.path.getsize(self._image_path) // 1024
@@ -37,8 +42,8 @@ class ImageClazz(object):
     def update_image_type(self):
         self._image_type = {
             (self._width / self._height < 1): 'mobile',
-            (self._width / self._height >= 2.3): 'large_format',
-            (1.5 <= self._width / self._height < 2.3): 'standard',
+            (self._width / self._height >= 2.2): 'large_format',
+            (1.5 <= self._width / self._height < 2.2): 'standard',
             (1 <= self._width / self._height < 1.5): 'square',
         }[True]
 
